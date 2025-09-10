@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>ru.smallstash</groupId>
-    <artifactId>RcoiBack</artifactId>
+    <artifactId>RcioBack</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>RcoiBack</name>
     <description>RcoiBack</description>
