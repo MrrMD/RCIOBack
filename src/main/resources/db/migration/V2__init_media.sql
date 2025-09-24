@@ -1,0 +1,5 @@
+CREATE TABLE media (
+    id BIGSERIAL PRIMARY KEY,
+    url VARCHAR(500) NOT NULL,
+    type VARCHAR(50) NOT NULL
+);

@@ -1,0 +1,8 @@
+CREATE TABLE news (
+    id BIGSERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    category VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    likes INT NOT NULL DEFAULT 0
+);
