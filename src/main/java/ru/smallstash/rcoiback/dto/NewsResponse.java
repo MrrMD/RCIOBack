@@ -11,5 +11,7 @@ public record NewsResponse(
         String category,
         List<MediaResponse> media,
         LocalDateTime createdAt,
-        int likes
+        int likes,
+        boolean favorite,
+        int views
 ) {}

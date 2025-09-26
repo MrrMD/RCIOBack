@@ -37,6 +37,13 @@ public class News {
     @Column(name = "likes", nullable = false)
     private int likes;
 
+    @Column(nullable = false)
+    private boolean favorite = false;
+
+    @Column(nullable = false)
+    private int views = 0;
+
+
     public Long getId() {
         return id;
     }
@@ -91,5 +98,21 @@ public class News {
 
     public void setLikes(int likes) {
         this.likes = likes;
+    }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
+
+    public int getViews() {
+        return views;
+    }
+
+    public void setViews(int views) {
+        this.views = views;
     }
 }
