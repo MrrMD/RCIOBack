@@ -2,11 +2,13 @@ package ru.smallstash.rcoiback.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.smallstash.rcoiback.dto.MediaRequest;
+import org.springframework.web.multipart.MultipartFile;
 import ru.smallstash.rcoiback.dto.MediaResponse;
 import ru.smallstash.rcoiback.entities.Media;
 import ru.smallstash.rcoiback.repositories.MediaRepository;
+import ru.smallstash.rcoiback.services.MediaStorageService;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -14,16 +16,20 @@ import java.util.List;
 public class MediaController {
 
     private final MediaRepository mediaRepository;
+    private final MediaStorageService mediaStorageService;
 
-    public MediaController(MediaRepository mediaRepository) {
+    public MediaController(MediaRepository mediaRepository, MediaStorageService mediaStorageService) {
         this.mediaRepository = mediaRepository;
+        this.mediaStorageService = mediaStorageService;
     }
 
-    @PostMapping
-    public ResponseEntity<MediaResponse> upload(@RequestBody MediaRequest request) {
+    @PostMapping()
+    public ResponseEntity<MediaResponse> upload(@RequestParam("file") MultipartFile file) throws IOException {
+        String url = mediaStorageService.upload(file.getBytes(), file.getOriginalFilename());
+
         Media media = new Media();
-        media.setUrl(request.url());
-        media.setType(request.type());
+        media.setUrl(url);
+        media.setType(file.getContentType());
         Media saved = mediaRepository.save(media);
 
         return ResponseEntity.ok(new MediaResponse(saved.getId(), saved.getUrl(), saved.getType()));
