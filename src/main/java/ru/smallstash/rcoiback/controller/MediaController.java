@@ -32,7 +32,11 @@ public class MediaController {
     @GetMapping
     public List<MediaResponse> getAll() {
         return mediaRepository.findAll().stream()
-                .map(m -> new MediaResponse(m.getId(), m.getUrl(), m.getType()))
+                .map(media -> new MediaResponse(
+                        media.getId(),
+                        media.getUrl(),      
+                        media.getType()
+                ))
                 .toList();
     }
 }
