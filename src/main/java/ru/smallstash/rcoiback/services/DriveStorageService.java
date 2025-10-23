@@ -46,8 +46,8 @@ public class DriveStorageService implements MediaStorageService {
                 fos.write(content);
             }
 
-            String relativePath = filePath.getFileName().toString();
-            return relativePath.replace("\\", "/");
+            String fileName = filePath.getFileName().toString();
+            return "http://188.0.167.1:8080/media/" + fileName;
 
         } catch (IOException e) {
             throw new RuntimeException("Ошибка при сохранении файла: " + e.getMessage(), e);
