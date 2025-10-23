@@ -52,7 +52,6 @@ public class NewsController {
         return newsService.getById(id);
     }
 
-
     @GetMapping("/category/{category}")
     public List<NewsResponse> getByCategory(@PathVariable String category) {
         return newsService.getByCategory(category);

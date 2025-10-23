@@ -11,13 +11,7 @@ public class IDriveStorageService implements MediaStorageService {
     }
 
     @Override
-    public byte[] download(String filename) {
-        return new byte[0];
-    }
-
-    @Override
     public void delete(String filename) {
-
     }
 }
 
