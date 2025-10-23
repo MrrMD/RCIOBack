@@ -34,7 +34,7 @@ public class MediaController {
         return mediaRepository.findAll().stream()
                 .map(media -> new MediaResponse(
                         media.getId(),
-                        media.getUrl(),      
+                        media.getUrl(),
                         media.getType()
                 ))
                 .toList();

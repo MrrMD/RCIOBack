@@ -46,8 +46,7 @@ public class DriveStorageService implements MediaStorageService {
                 fos.write(content);
             }
 
-            // Возвращаем относительный путь без "F:/"
-            String relativePath = "uploads/" + filePath.getFileName().toString();
+            String relativePath = filePath.getFileName().toString();
             return relativePath.replace("\\", "/");
 
         } catch (IOException e) {
