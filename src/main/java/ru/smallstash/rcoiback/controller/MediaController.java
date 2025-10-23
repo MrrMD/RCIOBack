@@ -18,9 +18,9 @@ public class MediaController {
     private final MediaRepository mediaRepository;
     private final MediaService mediaService;
 
-    public MediaController(MediaRepository mediaRepository, MediaStorageService mediaStorageService, MediaStorageService mediaService) {
+    public MediaController(MediaRepository mediaRepository, MediaService mediaService) {
         this.mediaRepository = mediaRepository;
-        this.mediaService = (MediaService) mediaService;
+        this.mediaService = mediaService;
     }
 
     @PostMapping
