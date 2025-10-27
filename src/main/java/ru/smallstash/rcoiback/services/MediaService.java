@@ -44,4 +44,12 @@ public class MediaService {
                 })
                 .toList();
     }
+
+    public boolean deleteMedia(Long id) {
+        return mediaRepository.findById(id).map(media -> {
+            mediaStorageService.delete(media.getUrl());
+            mediaRepository.delete(media);
+            return true;
+        }).orElse(false);
+    }
 }

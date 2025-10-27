@@ -11,7 +11,7 @@ import java.nio.file.Path;
 @Service
 public class DriveStorageService implements MediaStorageService {
 
-    // фактическое место на диске
+
     private static final String STORAGE_PATH = "F:/uploads/";
 
     public DriveStorageService() {
@@ -26,7 +26,7 @@ public class DriveStorageService implements MediaStorageService {
         try {
             Path filePath = Path.of(STORAGE_PATH, filename);
 
-            // если файл с таким именем уже есть — добавляем суффикс
+
             if (Files.exists(filePath)) {
                 String name = filename;
                 String ext = "";
