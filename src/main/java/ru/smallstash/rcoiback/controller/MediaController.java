@@ -1,5 +1,6 @@
 package ru.smallstash.rcoiback.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,10 +24,18 @@ public class MediaController {
         this.mediaService = mediaService;
     }
 
+    @Operation(summary = "Загрузка одного файла")
     @PostMapping
     public ResponseEntity<MediaResponse> upload(@RequestParam("file") MultipartFile file) throws IOException {
         MediaResponse response = mediaService.handleUpload(file);
         return ResponseEntity.ok(response);
+    }
+
+    @Operation(summary = "Загрузка нескольких файлов")
+    @PostMapping("/multiple")
+    public ResponseEntity<List<MediaResponse>> uploadMultiple(@RequestParam("files") MultipartFile[] files) {
+        List<MediaResponse> responses = mediaService.handleUploadMultiple(files);
+        return ResponseEntity.ok(responses);
     }
 
     @GetMapping

@@ -7,6 +7,8 @@ import ru.smallstash.rcoiback.entities.Media;
 import ru.smallstash.rcoiback.repositories.MediaRepository;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class MediaService {
@@ -29,5 +31,17 @@ public class MediaService {
         Media saved = mediaRepository.save(media);
 
         return new MediaResponse(saved.getId(), saved.getUrl(), saved.getType());
+    }
+
+    public List<MediaResponse> handleUploadMultiple(MultipartFile[] files) {
+        return Arrays.stream(files)
+                .map(file -> {
+                    try {
+                        return handleUpload(file);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+                .toList();
     }
 }
