@@ -57,7 +57,11 @@ public class DriveStorageService implements MediaStorageService {
     @Override
     public void delete(String filename) {
         try {
-            Path filePath = Path.of(STORAGE_PATH, filename);
+            String cleanFilename = filename.contains("media/")
+                    ? filename.substring(filename.lastIndexOf("media/") + 6)
+                    : filename;
+
+            Path filePath = Path.of(STORAGE_PATH, cleanFilename);
             Files.deleteIfExists(filePath);
         } catch (IOException e) {
             throw new RuntimeException("Ошибка при удалении файла: " + e.getMessage(), e);
